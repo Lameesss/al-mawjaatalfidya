@@ -1,0 +1,27 @@
+.wrap {
+  padding-block: 100px;
+  text-align: center;
+}
+
+.code {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-teal-600);
+  text-transform: uppercase;
+  margin-block-end: 12px;
+}
+
+.title {
+  font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.6rem);
+  color: var(--color-primary-800);
+  margin-block-end: 14px;
+}
+
+.body {
+  color: var(--color-ink-500);
+  font-size: 1.02rem;
+  max-width: 460px;
+  margin-inline: auto;
+  margin-block-end: 28px;
+}

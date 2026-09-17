@@ -1,0 +1,53 @@
+.nav {
+  padding-block: 18px;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--color-ink-500);
+}
+
+.link {
+  color: var(--color-ink-500);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.link:hover {
+  color: var(--color-teal-700);
+}
+
+.current {
+  color: var(--color-primary-800);
+  font-weight: 600;
+}
+
+.sep {
+  width: 14px;
+  height: 14px;
+  color: var(--color-ink-300);
+  flex-shrink: 0;
+}
+
+html[dir='rtl'] .sep {
+  transform: scaleX(-1);
+}
+
+.onDark .link {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.onDark .link:hover {
+  color: #fff;
+}
+
+.onDark .current {
+  color: #fff;
+}
+
+.onDark .sep {
+  color: rgba(255, 255, 255, 0.4);
+}

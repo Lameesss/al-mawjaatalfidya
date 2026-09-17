@@ -1,0 +1,59 @@
+:root {
+  /* Brand palette sampled from the AL-MAWJAAT AL-FIDYA logo (deep medical
+     blue + teal/turquoise gradient on white). */
+  --color-primary-900: #071f36;
+  --color-primary-800: #0a2f4f;
+  --color-primary-700: #0d3d66;
+  --color-primary-600: #124f80;
+  --color-primary-500: #175f96;
+  --color-primary-100: #e7eef6;
+  --color-primary-50: #f2f6fa;
+
+  --color-teal-700: #0f7a78;
+  --color-teal-600: #14938f;
+  --color-teal-500: #1cada8;
+  --color-teal-400: #4cc4bf;
+  --color-teal-300: #6fd3cf;
+  --color-teal-200: #b7e9e6;
+  --color-teal-100: #e2f6f4;
+
+  --color-warm-50: #fbf8f3;
+  --color-warm-100: #f5efe4;
+
+  --color-ink-900: #10202b;
+  --color-ink-700: #2b3f4a;
+  --color-ink-500: #55707d;
+  --color-ink-300: #8aa0aa;
+
+  --color-bg: #fbfcfd;
+  --color-bg-alt: #f2f6f8;
+  --color-surface: #ffffff;
+  --color-border: #e1e8ec;
+  --color-border-strong: #cbd8de;
+
+  --color-success: #1c7d5a;
+  --color-danger: #b3402f;
+
+  --font-latin: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-arabic: 'IBM Plex Sans Arabic', 'Tahoma', ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(10, 34, 56, 0.06), 0 1px 1px rgba(10, 34, 56, 0.04);
+  --shadow-md: 0 8px 24px rgba(10, 34, 56, 0.08), 0 2px 6px rgba(10, 34, 56, 0.05);
+  --shadow-lg: 0 20px 48px rgba(10, 34, 56, 0.12), 0 4px 12px rgba(10, 34, 56, 0.06);
+  --shadow-xl: 0 28px 64px rgba(10, 34, 56, 0.16), 0 8px 20px rgba(10, 34, 56, 0.08);
+
+  --container-max: 1280px;
+  --container-pad: clamp(20px, 5vw, 48px);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.18s;
+  --dur-med: 0.32s;
+  --dur-slow: 0.6s;
+
+  color-scheme: light;
+}

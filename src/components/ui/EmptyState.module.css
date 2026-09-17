@@ -1,0 +1,27 @@
+.wrap {
+  text-align: center;
+  padding: 64px 24px;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-alt);
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  color: var(--color-ink-300);
+  margin-inline: auto;
+  margin-block-end: 16px;
+}
+
+.title {
+  font-size: 1.15rem;
+  color: var(--color-primary-800);
+  margin-block-end: 8px;
+}
+
+.body {
+  color: var(--color-ink-500);
+  font-size: 0.95rem;
+  margin-block-end: 20px;
+}

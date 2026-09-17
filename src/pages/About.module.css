@@ -1,0 +1,108 @@
+.hero {
+  padding-block: 56px 40px;
+  background: var(--color-bg-alt);
+  text-align: center;
+}
+
+.section {
+  padding-block: 56px;
+}
+
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 820px) {
+  .categoriesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.categoryCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+}
+
+.categoryIcon {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary-100);
+  color: var(--color-primary-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-block-end: 16px;
+}
+
+.categoryName {
+  font-size: 1.05rem;
+  color: var(--color-primary-800);
+  margin-block-end: 8px;
+}
+
+.categoryDesc {
+  font-size: 0.92rem;
+  color: var(--color-ink-500);
+  line-height: 1.65;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 820px) {
+  .valuesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.valueCard {
+  padding: 26px;
+}
+
+.valueNum {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--color-teal-600);
+  margin-block-end: 10px;
+}
+
+.valueTitle {
+  font-size: 1.02rem;
+  color: var(--color-primary-800);
+  margin-block-end: 8px;
+}
+
+.valueBody {
+  font-size: 0.92rem;
+  color: var(--color-ink-500);
+  line-height: 1.65;
+}
+
+.cta {
+  text-align: center;
+  background: var(--color-primary-800);
+  border-radius: var(--radius-lg);
+  padding: 48px 24px;
+  color: #fff;
+}
+
+.ctaTitle {
+  color: #fff;
+  font-size: 1.4rem;
+  margin-block-end: 10px;
+}
+
+.ctaBody {
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 480px;
+  margin-inline: auto;
+  margin-block-end: 24px;
+}
