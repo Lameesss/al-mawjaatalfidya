@@ -44,13 +44,9 @@ export function Header() {
             src={lang === 'ar' ? '/logo/ar.png' : '/logo/eng.png'}
             alt={t.common.brandName}
             className={styles.logo}
-            width={90}
-            height={90}
+            width={130}
+            height={130}
           />
-          <span className={styles.brandText}>
-            <span className={styles.brandName}>{t.common.brandName}</span>
-            <span className={styles.brandTagline}>{t.common.tagline}</span>
-          </span>
         </Link>
 
         <nav className={styles.nav} aria-label={t.nav.menuLabel}>
