@@ -79,9 +79,7 @@ export function Footer() {
                 <span>{contactInfo.address[lang]}</span>
               </span>
             ) : null}
-            <Link to={buildPath(lang, 'contact')} className={styles.link}>
-              {t.common.contactUs}
-            </Link>
+
           </div>
         </div>
       </div>

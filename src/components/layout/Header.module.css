@@ -30,7 +30,7 @@
 }
 
 .logo {
-  height: 42px;
+  height: 90px;
   width: auto;
   border-radius: 10px;
   flex-shrink: 0;
@@ -38,7 +38,7 @@
 
 @media (max-width: 560px) {
   .logo {
-    height: 50px;
+    height: 56px;
   }
 
   .brandText {

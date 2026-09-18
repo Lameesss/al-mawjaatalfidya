@@ -44,8 +44,8 @@ export function Header() {
             src={lang === 'ar' ? '/logo/ar.png' : '/logo/eng.png'}
             alt={t.common.brandName}
             className={styles.logo}
-            width={42}
-            height={42}
+            width={90}
+            height={90}
           />
           <span className={styles.brandText}>
             <span className={styles.brandName}>{t.common.brandName}</span>

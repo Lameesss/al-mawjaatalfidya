@@ -29,3 +29,17 @@
 .active:hover {
   color: #fff;
 }
+
+/* Larger tap targets inside the mobile nav panel */
+@media (max-width: 900px) {
+  .switcher {
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .option {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+}
+

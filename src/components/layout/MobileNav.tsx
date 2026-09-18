@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useLang } from '@/i18n';
 import { categories } from '@/data/categories';
 import { buildPath, categoryPath } from '@/utils/paths';
-import { Button } from '@/components/ui/Button';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import styles from './MobileNav.module.css';
 
@@ -40,9 +39,6 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
 
         <div className={styles.footerRow}>
           <LanguageSwitcher />
-          <Button to={buildPath(lang, 'contact')} block onClick={onClose}>
-            {t.common.contactUs}
-          </Button>
         </div>
       </div>
     </div>
