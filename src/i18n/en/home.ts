@@ -2,15 +2,16 @@ import type { Dictionary } from '../types';
 
 export const home: Dictionary['home'] = {
   eyebrow: 'Medical Equipment • Medical Supplies • Mother & Child',
-  heroTitle: 'Importing the medical equipment, supplies, and mother & child products healthcare providers rely on.',
+  heroTitle: 'Medical Equipment.\nImported.\nDelivered.',
   heroSubtitle:
     'AL-MAWJAAT AL-FIDYA sources and supplies diagnostic equipment, hospital furniture, clinical consumables, and mother & child care products for healthcare facilities.',
   heroCtaPrimary: 'Explore Products',
   heroCtaSecondary: 'Contact Us',
-  introEyebrow: 'Who We Are',
-  introTitle: 'A focused catalog for modern healthcare facilities',
-  introBody:
-    'AL-MAWJAAT AL-FIDYA imports medical equipment, medical furniture, medical supplies, and mother & child products, bringing together diagnostic devices, hospital furniture, surgical instruments, and everyday clinical consumables in one carefully organized catalog.',
+  statsProductsLabel: 'Products in Catalog',
+  statsCategoriesLabel: 'Organized Categories',
+  statsSourcingLabel: 'International Sourcing',
+  statsSupportLabel: 'Direct Team Support',
+  categoryCount: (count) => `${count} ${count === 1 ? 'product' : 'products'}`,
   categoriesEyebrow: 'What We Offer',
   categoriesTitle: 'Product Categories',
   categoriesSubtitle: 'Browse our catalog by category to find the equipment, furniture, or supplies you need.',

@@ -39,9 +39,11 @@ export interface Dictionary {
     heroSubtitle: string;
     heroCtaPrimary: string;
     heroCtaSecondary: string;
-    introEyebrow: string;
-    introTitle: string;
-    introBody: string;
+    statsProductsLabel: string;
+    statsCategoriesLabel: string;
+    statsSourcingLabel: string;
+    statsSupportLabel: string;
+    categoryCount: (count: number) => string;
     categoriesEyebrow: string;
     categoriesTitle: string;
     categoriesSubtitle: string;
@@ -112,7 +114,9 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     intro: string;
+    whatWeImportEyebrow: string;
     whatWeImportTitle: string;
+    statement: string;
     valuesEyebrow: string;
     valuesTitle: string;
     values: WhyItem[];

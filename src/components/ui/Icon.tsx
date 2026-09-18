@@ -22,6 +22,7 @@ import {
   ShieldCheck,
   Globe2,
   Stethoscope,
+  LayoutGrid,
   type LucideProps,
 } from 'lucide-react';
 import type { ComponentType } from 'react';
@@ -50,6 +51,7 @@ const ICONS: Record<string, ComponentType<LucideProps>> = {
   ShieldCheck,
   Globe2,
   Stethoscope,
+  LayoutGrid,
 };
 
 export type IconName = keyof typeof ICONS;

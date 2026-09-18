@@ -1,6 +1,6 @@
 import { useLang } from '@/i18n';
 import { categories } from '@/data/categories';
-import { getLocalized, getMotherChildProducts, getProduct } from '@/data/products';
+import { getLocalized, getMotherChildProducts, getProduct, getProductsByCategory } from '@/data/products';
 import { buildPath, categoryPath, productPath } from '@/utils/paths';
 import { Seo } from '@/components/Seo';
 import { SectionHeading } from '@/components/ui/SectionHeading';
@@ -30,72 +30,49 @@ export function Home() {
 
       {/* Hero */}
       <section className={styles.hero}>
+        <div className={styles.heroBg} aria-hidden="true" />
         <div className={`container ${styles.heroGrid}`}>
           <div>
-            <p className={styles.heroEyebrow}>{t.home.eyebrow}</p>
+            <p className={styles.heroBadge}>
+              <Icon name="ShieldCheck" />
+              {t.home.eyebrow}
+            </p>
             <h1 className={styles.heroTitle}>{t.home.heroTitle}</h1>
-            <p className={styles.heroSubtitle}>{t.home.heroSubtitle}</p>
             <div className={styles.heroActions}>
-              <Button to={buildPath(lang, 'products')} iconEnd="ArrowRight">
+              <Button to={buildPath(lang, 'products')} iconEnd="ArrowRight" className={styles.heroPrimaryCta}>
                 {t.home.heroCtaPrimary}
-              </Button>
-              <Button to={buildPath(lang, 'contact')} variant="secondary">
-                {t.home.heroCtaSecondary}
               </Button>
             </div>
           </div>
 
           <div className={styles.heroVisual}>
-            <div className={styles.heroBackdrop} aria-hidden="true" />
-            <div className={styles.heroImageCard}>
-              {heroProduct ? (
-                <img
-                  src={heroProduct.image}
-                  alt={getLocalized(heroProduct, lang).localizedName}
-                  className={styles.heroImage}
-                  width={420}
-                  height={460}
-                  loading="eager"
-                  fetchPriority="high"
-                />
-              ) : null}
-            </div>
+            <img src="/hero/hero.png" alt={t.home.eyebrow} className={styles.heroVisualImage} width={420} height={420} />
           </div>
         </div>
+      </section>
+
+      {/* Why us — trust pillars, ahead of any product grid */}
+      <section className={`${styles.section} ${styles.sectionAlt}`}>
         <div className="container">
-          <div className={styles.heroStrip}>
-            {categories.map((cat) => (
-              <span key={cat.id} className={styles.heroChip}>
-                <Icon name={cat.icon} />
-                {t.category.items[cat.id].name}
-              </span>
+          <Reveal>
+            <SectionHeading eyebrow={t.home.whyEyebrow} title={t.home.whyTitle} center />
+          </Reveal>
+          <div className={styles.lifestyleGrid} style={{ marginBlockStart: 40 }}>
+            {t.home.whyItems.map((item, i) => (
+              <Reveal key={item.title} delay={i * 80} className={styles.lifestyleItem}>
+                <div className={styles.lifestyleIcon}>
+                  <Icon name={WHY_ICONS[i] ?? 'Package'} />
+                </div>
+                <p className={styles.lifestyleTitle}>{item.title}</p>
+                <p className={styles.lifestyleBody}>{item.body}</p>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Company introduction */}
-      <section className={styles.section}>
-        <div className={`container ${styles.introGrid}`}>
-          <Reveal>
-            <SectionHeading eyebrow={t.home.introEyebrow} title={t.home.introTitle} />
-          </Reveal>
-          <Reveal delay={100} className={styles.introBody}>
-            <p>{t.home.introBody}</p>
-            <div className={styles.introStats}>
-              {categories.map((cat, i) => (
-                <Reveal key={cat.id} delay={160 + i * 80} className={styles.introStatCard}>
-                  <Icon name={cat.icon} />
-                  <p className={styles.introStatLabel}>{t.category.items[cat.id].name}</p>
-                </Reveal>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Categories */}
-      <section className={`${styles.section} ${styles.sectionAlt}`}>
+      <section className={styles.section}>
         <div className="container">
           <Reveal>
             <SectionHeading
@@ -108,7 +85,7 @@ export function Home() {
           <div className={styles.categoriesGrid} style={{ marginBlockStart: 40 }}>
             {categories.map((cat, i) => (
               <Reveal key={cat.id} delay={i * 90}>
-                <CategoryCard category={cat} />
+                <CategoryCard category={cat} count={getProductsByCategory(cat.id).length} index={i} />
               </Reveal>
             ))}
           </div>
@@ -199,38 +176,21 @@ export function Home() {
         </section>
       ) : null}
 
-      {/* Why us */}
-      <section className={styles.section}>
+      {/* About teaser — centered statement */}
+      <section className={`${styles.section} ${styles.statementSection}`}>
         <div className="container">
-          <Reveal>
-            <SectionHeading eyebrow={t.home.whyEyebrow} title={t.home.whyTitle} center />
-          </Reveal>
-          <div className={styles.whyGrid} style={{ marginBlockStart: 40 }}>
-            {t.home.whyItems.map((item, i) => (
-              <Reveal key={item.title} delay={i * 80} className={styles.whyCard}>
-                <div className={styles.whyIcon}>
-                  <Icon name={WHY_ICONS[i] ?? 'Package'} />
-                </div>
-                <p className={styles.whyTitle}>{item.title}</p>
-                <p className={styles.whyBody}>{item.body}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About teaser */}
-      <section className={`${styles.section} ${styles.sectionAlt}`}>
-        <div className="container">
-          <Reveal className={styles.aboutTeaser}>
-            <div>
-              <p className={styles.aboutTeaserEyebrow}>{t.home.aboutTeaserEyebrow}</p>
-              <h2 className={styles.aboutTeaserTitle}>{t.home.aboutTeaserTitle}</h2>
-              <p className={styles.aboutTeaserBody}>{t.home.aboutTeaserBody}</p>
+          <Reveal className={styles.statement}>
+            <p className={styles.statementEyebrow}>{t.home.aboutTeaserEyebrow}</p>
+            <h2 className={styles.statementTitle}>{t.home.aboutTeaserTitle}</h2>
+            <p className={styles.statementBody}>{t.home.aboutTeaserBody}</p>
+            <div className={styles.statementActions}>
+              <Button to={buildPath(lang, 'about')} iconEnd="ArrowRight">
+                {t.home.aboutTeaserCta}
+              </Button>
+              <Button to={buildPath(lang, 'contact')} variant="secondary">
+                {t.home.ctaPrimary}
+              </Button>
             </div>
-            <Button to={buildPath(lang, 'about')} variant="secondary" iconEnd="ArrowRight">
-              {t.home.aboutTeaserCta}
-            </Button>
           </Reveal>
         </div>
       </section>

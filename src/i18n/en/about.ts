@@ -8,7 +8,10 @@ export const about: Dictionary['about'] = {
   title: 'AL-MAWJAAT AL-FIDYA',
   intro:
     'AL-MAWJAAT AL-FIDYA imports medical equipment, medical furniture, medical supplies, and mother & child products, bringing together diagnostic devices, hospital furniture, surgical instruments, and everyday clinical consumables for healthcare facilities.',
+  whatWeImportEyebrow: 'Our Catalog',
   whatWeImportTitle: 'What We Import',
+  statement:
+    'We hold every product we import to the same standard we would expect for our own hospital — reliable, documented, and ready to use.',
   valuesEyebrow: 'Our Approach',
   valuesTitle: 'How We Work',
   values: [

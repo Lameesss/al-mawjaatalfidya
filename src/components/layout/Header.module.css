@@ -36,9 +36,13 @@
   flex-shrink: 0;
 }
 
-@media (max-width: 380px) {
+@media (max-width: 560px) {
   .logo {
-    height: 34px;
+    height: 50px;
+  }
+
+  .brandText {
+    display: none;
   }
 }
 
