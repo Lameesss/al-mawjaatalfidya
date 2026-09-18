@@ -26,7 +26,10 @@ export interface SocialLink {
   icon: string;
 }
 
-export const contactInfo: ContactInfo = {};
+export const contactInfo: ContactInfo = {
+  phone: '00218923368089',
+  email: 'Info@almawjaatalfidya.com',
+};
 
 export function hasAnyContactDetail(info: ContactInfo): boolean {
   return Boolean(
