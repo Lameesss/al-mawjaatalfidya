@@ -17,7 +17,7 @@ export function Footer() {
         <div className={styles.brandCol}>
           <div className={styles.brandRow}>
             <img
-              src={lang === 'ar' ? '/logo/ar.png' : '/logo/eng.png'}
+              src="/logo/icon.png"
               alt={t.common.brandName}
               className={styles.logo}
               width={38}

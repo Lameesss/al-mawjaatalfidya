@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding-block: 10px;
+  padding-block: var(--header-pad-y);
   padding-inline-start: 0;
 }
 
@@ -31,21 +31,10 @@
 }
 
 .logo {
-  height: 130px;
+  height: var(--header-logo-h);
   width: auto;
-  border-radius: 10px;
   flex-shrink: 0;
   margin-inline-start: -4px;
-}
-
-@media (max-width: 560px) {
-  .logo {
-    height: 80px;
-  }
-
-  .brandText {
-    display: none;
-  }
 }
 
 .brandText {
@@ -193,6 +182,12 @@ html[dir='rtl'] .bar {
   flex: 1;
 }
 
+@media (max-width: 900px) {
+  .langSwitcherHide {
+    display: none;
+  }
+}
+
 @media (max-width: 380px) {
   .actions {
     gap: 6px;
@@ -211,16 +206,24 @@ html[dir='rtl'] .bar {
 
 .menuBtn {
   display: none;
-  padding: 8px;
-  margin-inline-end: -8px;
-  border-radius: var(--radius-sm);
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
   color: var(--color-primary-800);
   flex-shrink: 0;
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
 
 @media (max-width: 900px) {
   .menuBtn {
     display: inline-flex;
+    background: var(--color-primary-50);
+  }
+
+  .menuBtn:hover {
+    background: var(--color-primary-100);
   }
 }
 

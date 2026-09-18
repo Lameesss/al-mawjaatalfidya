@@ -50,10 +50,37 @@
   --container-max: 1280px;
   --container-pad: clamp(20px, 5vw, 48px);
 
+  /* Navbar sizing. Header (logo + padding) and MobileNav (drawer offset) both
+     read these, so the drawer always sits flush under the header. */
+  --header-logo-h: 130px;
+  --header-pad-y: 10px;
+  --header-h: calc(var(--header-logo-h) + var(--header-pad-y) * 2);
+
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 0.18s;
   --dur-med: 0.32s;
   --dur-slow: 0.6s;
 
   color-scheme: light;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --header-logo-h: 100px;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --header-logo-h: clamp(72px, 22vw, 88px);
+    --header-pad-y: 6px;
+  }
+}
+
+/* Landscape phones / short windows: a tall sticky header would eat the screen. */
+@media (max-height: 500px) {
+  :root {
+    --header-logo-h: 64px;
+    --header-pad-y: 4px;
+  }
 }

@@ -1,16 +1,47 @@
+/* ─── Backdrop overlay ────────────────────────────────────────── */
+.backdrop {
+  position: fixed;
+  inset-block-start: var(--header-h);
+  inset-block-end: 0;
+  inset-inline: 0;
+  z-index: 89;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(3px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-med) var(--ease-out);
+}
+
+.backdropOpen {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+@media (min-width: 901px) {
+  .backdrop {
+    display: none !important;
+  }
+}
+
+/* ─── Drawer panel ────────────────────────────────────────────── */
 .panel {
   position: fixed;
-  inset-block-start: 0;
+  inset-block-start: var(--header-h);
   inset-inline-start: 0;
   inset-inline-end: 0;
-  inset-block-end: 0;
   z-index: 90;
   background: var(--color-surface);
+  max-height: calc(100vh - var(--header-h) - 8px);
+  max-height: calc(100dvh - var(--header-h) - 8px);
   overflow-y: auto;
+  overscroll-behavior: contain;
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-12px);
+  transform: translateY(-16px);
+  border-block-end: 1px solid var(--color-border);
+  box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.18);
+  border-radius: 0 0 var(--radius-lg, 16px) var(--radius-lg, 16px);
   transition:
     transform var(--dur-med) var(--ease-out),
     opacity var(--dur-med) var(--ease-out),
@@ -34,39 +65,56 @@
     visibility 0s 0s;
 }
 
+/* ─── Inner content ───────────────────────────────────────────── */
 .inner {
-  padding: 110px 28px 48px;
+  padding: 12px 24px 28px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   max-width: 480px;
   margin-inline: auto;
 }
 
+/* ─── Nav links ───────────────────────────────────────────────── */
 .link {
-  display: block;
-  padding: 18px 10px;
-  border-block-end: 1px solid var(--color-border);
-  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 14px;
+  border-radius: var(--radius-md, 10px);
+  font-size: 1.05rem;
   font-weight: 700;
-  color: var(--color-primary-800);
-  border-radius: var(--radius-sm);
+  color: var(--color-ink-700);
   transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
 
 .link:hover,
 .link:active {
   background: var(--color-primary-50);
-  color: var(--color-primary-600);
+  color: var(--color-primary-700);
 }
 
+.linkActive {
+  background: var(--color-primary-100);
+  color: var(--color-primary-800);
+}
+
+/* ─── Divider ─────────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 6px 0;
+  border-radius: 999px;
+}
+
+/* ─── Categories group ────────────────────────────────────────── */
 .groupTitle {
-  padding: 20px 10px 8px;
-  font-size: 0.75rem;
-  font-weight: 700;
+  padding: 14px 14px 6px;
+  font-size: 0.7rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-ink-300);
+  letter-spacing: 0.1em;
+  color: var(--color-ink-400);
 }
 
 html[dir='rtl'] .groupTitle {
@@ -74,31 +122,68 @@ html[dir='rtl'] .groupTitle {
 }
 
 .subLink {
-  display: block;
-  padding: 14px 10px 14px 28px;
-  font-size: 0.97rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  padding-inline-start: 30px;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: var(--color-ink-700);
-  border-block-end: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  color: var(--color-ink-600);
+  border-radius: var(--radius-md, 10px);
   transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.subLink::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-primary-400);
+  flex-shrink: 0;
 }
 
 .subLink:hover,
 .subLink:active {
-  background: var(--color-teal-100);
-  color: var(--color-teal-700);
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
 }
 
-html[dir='rtl'] .subLink {
-  padding: 14px 28px 14px 10px;
-}
-
+/* ─── Footer row (lang switcher + CTA) ───────────────────────── */
 .footerRow {
-  margin-block-start: 32px;
+  margin-block-start: 20px;
+  padding-block-start: 20px;
+  border-block-start: 1px solid var(--color-border);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
+.footerCta {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* Short screens (small phones, landscape): tighten rows so more fits before scrolling. */
+@media (max-height: 700px) {
+  .link {
+    padding-block: 12px;
+  }
+
+  .groupTitle {
+    padding-block-start: 8px;
+  }
+
+  .subLink {
+    padding-block: 9px;
+  }
+
+  .footerRow {
+    margin-block-start: 12px;
+    padding-block-start: 14px;
+  }
+}

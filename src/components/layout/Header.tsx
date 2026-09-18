@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useLang } from '@/i18n';
+import { useLang, type Lang } from '@/i18n';
 import { categories } from '@/data/categories';
 import { buildPath, categoryPath } from '@/utils/paths';
 import { Button } from '@/components/ui/Button';
@@ -9,11 +9,18 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 import { MobileNav } from './MobileNav';
 import styles from './Header.module.css';
 
+const LOGOS: Record<Lang, { src: string; width: number; height: number }> = {
+  en: { src: '/logo/eng.png', width: 534, height: 409 },
+  ar: { src: '/logo/ar.png', width: 378, height: 426 },
+};
+
 export function Header() {
   const { lang, t } = useLang();
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const menuBtnRef = useRef<HTMLButtonElement>(null);
+  const logo = LOGOS[lang];
 
   useEffect(() => {
     function onScroll() {
@@ -28,6 +35,29 @@ export function Header() {
     setMobileOpen(false);
   }, [location.pathname]);
 
+  // While the mobile drawer is open: lock page scroll, close on Escape, and
+  // close if the viewport grows past the mobile breakpoint (e.g. rotation).
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const desktop = window.matchMedia('(min-width: 901px)');
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setMobileOpen(false);
+      menuBtnRef.current?.focus();
+    };
+    const onBreakpoint = () => {
+      if (desktop.matches) setMobileOpen(false);
+    };
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onKeyDown);
+    desktop.addEventListener('change', onBreakpoint);
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKeyDown);
+      desktop.removeEventListener('change', onBreakpoint);
+    };
+  }, [mobileOpen]);
+
   const homePath = buildPath(lang);
   const productsPath = buildPath(lang, 'products');
   const aboutPath = buildPath(lang, 'about');
@@ -37,15 +67,15 @@ export function Header() {
 
   return (
     <>
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${scrolled || mobileOpen ? styles.scrolled : ''}`}>
       <div className={`container ${styles.bar}`}>
         <Link to={homePath} className={styles.brand}>
           <img
-            src={lang === 'ar' ? '/logo/ar.png' : '/logo/eng.png'}
+            src={logo.src}
             alt={t.common.brandName}
             className={styles.logo}
-            width={130}
-            height={130}
+            width={logo.width}
+            height={logo.height}
           />
         </Link>
 
@@ -80,15 +110,19 @@ export function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <LanguageSwitcher />
+          <div className={styles.langSwitcherHide}>
+            <LanguageSwitcher />
+          </div>
           <Button to={contactPath} size="sm" className={styles.ctaDesktop}>
             {t.common.contactUs}
           </Button>
           <button
+            ref={menuBtnRef}
             type="button"
             className={styles.menuBtn}
             aria-label={t.nav.menuLabel}
             aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
             onClick={() => setMobileOpen((o) => !o)}
           >
             <Icon name={mobileOpen ? 'X' : 'Menu'} className={styles.menuIcon} />
